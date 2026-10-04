@@ -81,13 +81,13 @@
     .accordion-content { display: grid; grid-template-rows: 0fr; transition: grid-template-rows .25s ease; }
     .accordion-content > div { overflow: hidden; }
     .accordion-item.open .accordion-content { grid-template-rows: 1fr; }
-    .case-toggle { color: #267f96; font-size: .875rem; font-weight: 700; opacity: .82; transition: color .2s ease, opacity .2s ease, transform .2s ease, background-color .2s ease; cursor: pointer; }
-    .case-toggle:hover, .case-toggle:focus-visible { color: #087d9d; opacity: 1; transform: translateX(2px); }
-    .case-toggle .case-chevron { transition: transform .24s ease, color .2s ease; }
-    .case-card.expanded .case-toggle { color: #8a6700; background: rgba(255,217,90,.14); border-radius: 999px; padding: .35rem .65rem; opacity: 1; }
-    .case-card.expanded .case-toggle .case-chevron { transform: rotate(180deg); color: #c18b00; }
-    .case-detail { display: none; }
-    .case-card.expanded .case-detail { display: block; animation: rise .25s ease both; }
+    .case-toggle { color: #087d9d; font-size: .875rem; font-weight: 700; transition: all .2s ease; cursor: pointer; border: 1px solid rgba(8,125,157,.2); background: rgba(8,125,157,.06); border-radius: 999px; padding: .4rem .85rem; }
+    .case-toggle:hover, .case-toggle:focus-visible { color: #055e75; background: rgba(8,125,157,.12); transform: translateY(-1px); }
+    .case-toggle .case-chevron { transition: transform .3s ease; }
+    .case-card.expanded .case-toggle { color: #8a6700; background: rgba(255,217,90,.22); border-color: rgba(255,217,90,.6); }
+    .case-card.expanded .case-toggle .case-chevron { transform: rotate(180deg); color: #8a6700; }
+    .case-detail { display: none !important; }
+    .case-card.expanded .case-detail { display: grid !important; animation: rise .3s cubic-bezier(0.16, 1, 0.3, 1) both; }
     .risk-high { background: #ffe5e5; color: #a12424; } 
     .risk-medium { background: #fff2cc; color: #8a5c00; } 
     .risk-low { background: #dbf9ee; color: #087052; }
@@ -435,11 +435,18 @@
                 <div><b>Dampak</b><p class="text-slate-600 mt-1">Penyalahgunaan identitas atau penyebaran di luar tujuan awal.</p></div>
               </div>
               <button type="button" class="case-toggle mt-5 inline-flex items-center gap-2" aria-expanded="false">
-                Lihat analisis <i data-lucide="chevron-down" class="case-chevron w-4 h-4"></i>
+                <span class="case-toggle-text">Lihat analisis</span>
+                <i data-lucide="chevron-down" class="case-chevron w-4 h-4"></i>
               </button>
               <div class="case-detail border-t border-slate-200 mt-5 pt-5 grid sm:grid-cols-2 gap-4 text-sm">
-                <div><b>Analisis Demokratis</b><p class="mt-1 text-slate-600">Hak atas perlindungan diri perlu dihormati; kebutuhan administrasi tidak berarti data boleh diteruskan ke semua orang.</p></div>
-                <div><b>Tindakan Aman</b><p class="mt-1 text-slate-600">Kirim hanya ke pihak berwenang melalui kanal terbatas; tutup bagian data yang tidak diperlukan.</p></div>
+                <div class="bg-blue-50/80 p-4 rounded-2xl border border-blue-100">
+                  <b class="text-[#0a2245] flex items-center gap-1.5 mb-1"><i data-lucide="scale" class="w-4 h-4 text-cyan-600"></i> Analisis Demokratis</b>
+                  <p class="text-slate-600 leading-relaxed text-xs sm:text-sm">Hak atas perlindungan diri perlu dihormati; kebutuhan administrasi tidak berarti data boleh diteruskan ke semua orang.</p>
+                </div>
+                <div class="bg-emerald-50/80 p-4 rounded-2xl border border-emerald-100">
+                  <b class="text-[#0a2245] flex items-center gap-1.5 mb-1"><i data-lucide="shield-check" class="w-4 h-4 text-emerald-600"></i> Tindakan Aman</b>
+                  <p class="text-slate-600 leading-relaxed text-xs sm:text-sm">Kirim hanya ke pihak berwenang melalui kanal terbatas; tutup bagian data yang tidak diperlukan.</p>
+                </div>
               </div>
             </article>
 
@@ -460,11 +467,18 @@
                 <div><b>Dampak</b><p class="text-slate-600 mt-1">Data dapat terlihat atau diubah oleh orang yang tidak berkepentingan.</p></div>
               </div>
               <button type="button" class="case-toggle mt-5 inline-flex items-center gap-2" aria-expanded="false">
-                Lihat analisis <i data-lucide="chevron-down" class="case-chevron w-4 h-4"></i>
+                <span class="case-toggle-text">Lihat analisis</span>
+                <i data-lucide="chevron-down" class="case-chevron w-4 h-4"></i>
               </button>
               <div class="case-detail border-t border-slate-200 mt-5 pt-5 grid sm:grid-cols-2 gap-4 text-sm">
-                <div><b>Analisis Demokratis</b><p class="mt-1 text-slate-600">Akses informasi harus seimbang dengan perlindungan dan tujuan pengumpulan data yang jelas.</p></div>
-                <div><b>Tindakan Aman</b><p class="mt-1 text-slate-600">Batasi akses editor, jelaskan tujuan pengumpulan, dan gunakan akun atau formulir resmi.</p></div>
+                <div class="bg-blue-50/80 p-4 rounded-2xl border border-blue-100">
+                  <b class="text-[#0a2245] flex items-center gap-1.5 mb-1"><i data-lucide="scale" class="w-4 h-4 text-cyan-600"></i> Analisis Demokratis</b>
+                  <p class="text-slate-600 leading-relaxed text-xs sm:text-sm">Akses informasi harus seimbang dengan perlindungan dan tujuan pengumpulan data yang jelas.</p>
+                </div>
+                <div class="bg-emerald-50/80 p-4 rounded-2xl border border-emerald-100">
+                  <b class="text-[#0a2245] flex items-center gap-1.5 mb-1"><i data-lucide="shield-check" class="w-4 h-4 text-emerald-600"></i> Tindakan Aman</b>
+                  <p class="text-slate-600 leading-relaxed text-xs sm:text-sm">Batasi akses editor, jelaskan tujuan pengumpulan, dan gunakan akun atau formulir resmi.</p>
+                </div>
               </div>
             </article>
 
@@ -485,11 +499,18 @@
                 <div><b>Dampak</b><p class="text-slate-600 mt-1">Kontak dapat menerima pesan tidak diinginkan atau mengalami tekanan sosial.</p></div>
               </div>
               <button type="button" class="case-toggle mt-5 inline-flex items-center gap-2" aria-expanded="false">
-                Lihat analisis <i data-lucide="chevron-down" class="case-chevron w-4 h-4"></i>
+                <span class="case-toggle-text">Lihat analisis</span>
+                <i data-lucide="chevron-down" class="case-chevron w-4 h-4"></i>
               </button>
               <div class="case-detail border-t border-slate-200 mt-5 pt-5 grid sm:grid-cols-2 gap-4 text-sm">
-                <div><b>Analisis Demokratis</b><p class="mt-1 text-slate-600">Menyampaikan informasi tidak boleh menghapus hak seseorang untuk mengendalikan data pribadinya.</p></div>
-                <div><b>Tindakan Aman</b><p class="mt-1 text-slate-600">Hapus atau kaburkan nomor, minta izin, dan gunakan ringkasan tanpa identitas bila perlu.</p></div>
+                <div class="bg-blue-50/80 p-4 rounded-2xl border border-blue-100">
+                  <b class="text-[#0a2245] flex items-center gap-1.5 mb-1"><i data-lucide="scale" class="w-4 h-4 text-cyan-600"></i> Analisis Demokratis</b>
+                  <p class="text-slate-600 leading-relaxed text-xs sm:text-sm">Menyampaikan informasi tidak boleh menghapus hak seseorang untuk mengendalikan data pribadinya.</p>
+                </div>
+                <div class="bg-emerald-50/80 p-4 rounded-2xl border border-emerald-100">
+                  <b class="text-[#0a2245] flex items-center gap-1.5 mb-1"><i data-lucide="shield-check" class="w-4 h-4 text-emerald-600"></i> Tindakan Aman</b>
+                  <p class="text-slate-600 leading-relaxed text-xs sm:text-sm">Hapus atau kaburkan nomor, minta izin, dan gunakan ringkasan tanpa identitas bila perlu.</p>
+                </div>
               </div>
             </article>
           </div>
@@ -981,13 +1002,32 @@
         btn.setAttribute('aria-expanded', String(open));
       }));
 
-      // Case toggle
-      document.querySelectorAll('.case-toggle').forEach(btn => btn.addEventListener('click', () => {
-        const card = btn.closest('.case-card'), open = card.classList.toggle('expanded');
-        btn.setAttribute('aria-expanded', String(open));
-        btn.firstChild.textContent = open ? 'Sembunyikan analisis ' : 'Lihat analisis ';
-        btn.classList.toggle('is-open', open);
-      }));
+      // Case toggle (Interactive Accordion)
+      document.querySelectorAll('.case-toggle').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const card = btn.closest('.case-card');
+          const isExpanded = card.classList.contains('expanded');
+
+          // Tutup semua kartu kasus terlebih dahulu agar fokus ke analisis yang dipilih
+          document.querySelectorAll('.case-card').forEach(c => {
+            c.classList.remove('expanded');
+            const toggleBtn = c.querySelector('.case-toggle');
+            if (toggleBtn) {
+              toggleBtn.setAttribute('aria-expanded', 'false');
+              const textSpan = toggleBtn.querySelector('.case-toggle-text');
+              if (textSpan) textSpan.textContent = 'Lihat analisis';
+            }
+          });
+
+          // Jika kartu yang diklik sebelumnya tertutup, buka dan tampilkan analisisnya
+          if (!isExpanded) {
+            card.classList.add('expanded');
+            btn.setAttribute('aria-expanded', 'true');
+            const textSpan = btn.querySelector('.case-toggle-text');
+            if (textSpan) textSpan.textContent = 'Sembunyikan analisis';
+          }
+        });
+      });
 
       // Interactive Checklist
       const checks = [...document.querySelectorAll('.check-item')];
