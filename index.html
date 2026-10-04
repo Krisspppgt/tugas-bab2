@@ -91,9 +91,12 @@
     .risk-high { background: #ffe5e5; color: #a12424; } 
     .risk-medium { background: #fff2cc; color: #8a5c00; } 
     .risk-low { background: #dbf9ee; color: #087052; }
-    .roadmap::before { content: ""; position: absolute; left: 22px; top: 34px; bottom: 34px; width: 2px; background: linear-gradient(var(--cyan), var(--yellow)); }
-    .road-step { position: relative; padding-left: 66px; }
-    .road-dot { position: absolute; left: 10px; top: 20px; width: 25px; height: 25px; border-radius: 50%; background: var(--navy); border: 5px solid var(--cyan); z-index: 1; }
+    .road-step { display: flex; gap: 1rem; align-items: flex-start; }
+    .road-dot-wrap { display: flex; flex-direction: column; align-items: center; flex: none; padding-top: 4px; }
+    .road-dot { width: 26px; height: 26px; border-radius: 50%; background: var(--navy); border: 4px solid var(--cyan); flex: none; z-index: 1; }
+    .road-line { width: 2px; flex: 1; min-height: 28px; background: linear-gradient(var(--cyan), var(--yellow)); margin-top: 4px; }
+    .road-last .road-line { display: none; }
+    .road-body { flex: 1; }
     .check-item { cursor: pointer; transition: .2s ease; }
     .check-item.done { border-color: #49d9a6; background: #effff8; }
     .check-dot { width: 23px; height: 23px; border: 2px solid #8ea1bc; border-radius: 7px; display: grid; place-items: center; flex: none; }
@@ -549,36 +552,69 @@
         </div>
 
         <div class="grid lg:grid-cols-[1fr_.85fr] gap-8 mt-10">
-          <section class="relative roadmap space-y-5" aria-label="Roadmap aksi">
-            <article class="road-step surface rounded-3xl p-6">
-              <span class="road-dot"></span>
-              <h2 class="text-2xl font-extrabold mt-1 text-[#0a2245]">Mulai Sekarang</h2>
-              <ul class="mt-4 space-y-2 text-slate-600 list-disc pl-5 text-sm">
-                <li>Gunakan prinsip persetujuan sebelum mengumpulkan data.</li>
-                <li>Bagikan template pemberitahuan privasi sederhana.</li>
-                <li>Terapkan aturan berbagi file dan akses seperlunya.</li>
-              </ul>
-            </article>
+          <section class="roadmap space-y-0" aria-label="Roadmap aksi">
+            <!-- Step 1 -->
+            <div class="road-step">
+              <div class="road-dot-wrap">
+                <span class="road-dot" style="border-color:#34d9eb"></span>
+                <span class="road-line"></span>
+              </div>
+              <div class="road-body pb-6">
+                <article class="surface rounded-3xl p-6">
+                  <h2 class="text-2xl font-extrabold text-[#0a2245] flex items-center gap-2">
+                    <span class="text-xs font-mono text-cyan-600 bg-cyan-50 px-2 py-0.5 rounded-full border border-cyan-200">01</span>
+                    Mulai Sekarang
+                  </h2>
+                  <ul class="mt-4 space-y-2 text-slate-600 list-disc pl-5 text-sm">
+                    <li>Gunakan prinsip persetujuan sebelum mengumpulkan data.</li>
+                    <li>Bagikan template pemberitahuan privasi sederhana.</li>
+                    <li>Terapkan aturan berbagi file dan akses seperlunya.</li>
+                  </ul>
+                </article>
+              </div>
+            </div>
 
-            <article class="road-step surface rounded-3xl p-6">
-              <span class="road-dot" style="border-color:#ffd95a"></span>
-              <h2 class="text-2xl font-extrabold mt-1 text-[#0a2245]">30 Hari</h2>
-              <ul class="mt-4 space-y-2 text-slate-600 list-disc pl-5 text-sm">
-                <li>Kampanye kesadaran kata sandi kuat dan MFA.</li>
-                <li>Susun alur pelaporan insiden yang mudah dipahami.</li>
-                <li>Adakan lokakarya literasi digital untuk siswa.</li>
-              </ul>
-            </article>
+            <!-- Step 2 -->
+            <div class="road-step">
+              <div class="road-dot-wrap">
+                <span class="road-dot" style="border-color:#ffd95a"></span>
+                <span class="road-line" style="background:linear-gradient(#ffd95a,#83a8ff)"></span>
+              </div>
+              <div class="road-body pb-6">
+                <article class="surface rounded-3xl p-6">
+                  <h2 class="text-2xl font-extrabold text-[#0a2245] flex items-center gap-2">
+                    <span class="text-xs font-mono text-yellow-700 bg-yellow-50 px-2 py-0.5 rounded-full border border-yellow-200">30</span>
+                    30 Hari
+                  </h2>
+                  <ul class="mt-4 space-y-2 text-slate-600 list-disc pl-5 text-sm">
+                    <li>Kampanye kesadaran kata sandi kuat dan MFA.</li>
+                    <li>Susun alur pelaporan insiden yang mudah dipahami.</li>
+                    <li>Adakan lokakarya literasi digital untuk siswa.</li>
+                  </ul>
+                </article>
+              </div>
+            </div>
 
-            <article class="road-step surface rounded-3xl p-6">
-              <span class="road-dot" style="border-color:#83a8ff"></span>
-              <h2 class="text-2xl font-extrabold mt-1 text-[#0a2245]">Berikutnya</h2>
-              <ul class="mt-4 space-y-2 text-slate-600 list-disc pl-5 text-sm">
-                <li>Lakukan audit inventaris data secara berkala.</li>
-                <li>Tinjau akses akun, folder, dan perangkat bersama.</li>
-                <li>Evaluasi kebiasaan keamanan bersama tim sekolah.</li>
-              </ul>
-            </article>
+            <!-- Step 3 -->
+            <div class="road-step road-last">
+              <div class="road-dot-wrap">
+                <span class="road-dot" style="border-color:#83a8ff"></span>
+                <span class="road-line"></span>
+              </div>
+              <div class="road-body pb-6">
+                <article class="surface rounded-3xl p-6">
+                  <h2 class="text-2xl font-extrabold text-[#0a2245] flex items-center gap-2">
+                    <span class="text-xs font-mono text-indigo-600 bg-indigo-50 px-2 py-0.5 rounded-full border border-indigo-200">∞</span>
+                    Berikutnya
+                  </h2>
+                  <ul class="mt-4 space-y-2 text-slate-600 list-disc pl-5 text-sm">
+                    <li>Lakukan audit inventaris data secara berkala.</li>
+                    <li>Tinjau akses akun, folder, dan perangkat bersama.</li>
+                    <li>Evaluasi kebiasaan keamanan bersama tim sekolah.</li>
+                  </ul>
+                </article>
+              </div>
+            </div>
           </section>
 
           <aside class="space-y-5">
