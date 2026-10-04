@@ -1,0 +1,1113 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Demokrasi di Era Keterbukaan Informasi - SMKN 7</title>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com/3.4.17" type="text/javascript"></script>
+  
+  <!-- Lucide Icons -->
+  <script src="https://cdn.jsdelivr.net/npm/lucide@0.577.0/dist/umd/lucide.min.js" type="text/javascript"></script>
+
+  <style>
+    :root { 
+      --navy: #07152d; 
+      --navy2: #0b2144; 
+      --cyan: #34d9eb; 
+      --yellow: #ffd95a; 
+      --ink: #0a2245; 
+      --muted: #60718b; 
+      --surface: #f5fbff; 
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { 
+      margin: 0; 
+      width: 100%; 
+      font-family: "DM Sans", sans-serif; 
+      background: var(--navy); 
+      color: #eef9ff; 
+      overflow-x: hidden; 
+    }
+    body::before { 
+      content: ""; 
+      position: fixed; 
+      inset: 0; 
+      pointer-events: none; 
+      opacity: .18; 
+      background-image: linear-gradient(rgba(52,217,235,.18) 1px, transparent 1px), linear-gradient(90deg, rgba(52,217,235,.18) 1px, transparent 1px); 
+      background-size: 36px 36px; 
+      mask-image: linear-gradient(to bottom, black, transparent 75%); 
+    }
+    .site-shell { width: 100%; min-height: 100vh; position: relative; }
+    .topbar { backdrop-filter: blur(18px); background: rgba(7,21,45,.88); border-bottom: 1px solid rgba(113,218,235,.19); }
+    .brand-mark { width: 42px; height: 42px; border-radius: 14px; display: grid; place-items: center; background: linear-gradient(135deg, var(--cyan), #2b92ed); color: var(--navy); box-shadow: 0 0 24px rgba(52,217,235,.35); }
+    .nav-button { color: #b6c8df; border: 1px solid transparent; transition: .2s ease; cursor: pointer; }
+    .nav-button:hover, .nav-button:focus-visible { color: #fff; background: rgba(255,255,255,.08); outline: none; }
+    .nav-button.active { color: var(--navy); background: var(--cyan); font-weight: 700; box-shadow: 0 8px 20px rgba(52,217,235,.19); }
+    .view { display: none; animation: rise .42s ease both; }
+    .view.active { display: block; }
+    @keyframes rise { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+    .eyebrow { font-family: "Space Mono", monospace; letter-spacing: .12em; text-transform: uppercase; color: var(--cyan); font-size: .75rem; font-weight: 700; }
+    .hero-orb { position: absolute; border-radius: 999px; filter: blur(4px); pointer-events: none; }
+    .hero-orb.one { width: 340px; height: 340px; background: radial-gradient(circle, rgba(52,217,235,.24), transparent 68%); right: -90px; top: 25px; }
+    .hero-orb.two { width: 250px; height: 250px; background: radial-gradient(circle, rgba(255,217,90,.16), transparent 70%); left: -80px; bottom: 0; }
+    .surface { background: rgba(248,252,255,.98); color: var(--ink); border: 1px solid rgba(255,255,255,.7); box-shadow: 0 18px 50px rgba(0,9,31,.16); }
+    .dark-card { background: linear-gradient(135deg, rgba(17,47,88,.95), rgba(9,28,58,.95)); border: 1px solid rgba(100,223,239,.2); }
+    .glow-line { height: 1px; background: linear-gradient(90deg, transparent, var(--cyan), transparent); }
+    .cta { display: inline-flex; align-items: center; justify-content: center; gap: .55rem; border-radius: 14px; padding: .82rem 1.1rem; font-weight: 700; transition: .2s ease; cursor: pointer; }
+    .cta:focus-visible, .accordion-trigger:focus-visible, .case-toggle:focus-visible, .check-item:focus-visible { outline: 3px solid var(--yellow); outline-offset: 3px; }
+    .cta-primary { background: var(--cyan); color: var(--navy); box-shadow: 0 10px 24px rgba(52,217,235,.2); }
+    .cta-primary:hover { transform: translateY(-2px); background: #7debf5; }
+    .cta-secondary { border: 1px solid rgba(255,255,255,.35); color: #fff; background: rgba(255,255,255,.06); }
+    .cta-secondary:hover { background: rgba(255,255,255,.14); }
+    .avatar { width: 44px; height: 44px; display: grid; place-items: center; border-radius: 50%; font-weight: 800; background: #dffaff; color: #07506e; border: 3px solid #fff; }
+    .comparison { min-height: 245px; position: relative; overflow: hidden; }
+    .comparison-state { transition: .3s ease; }
+    .comparison.after .before-panel { opacity: .22; transform: translateX(-12px) scale(.98); }
+    .comparison.before .after-panel { opacity: .22; transform: translateX(12px) scale(.98); }
+    .status-bad { background: #ffe8e5; color: #a33125; }
+    .status-good { background: #dcfce7; color: #166534; }
+    .article-featured { border: 2px solid var(--cyan); box-shadow: 0 0 0 5px rgba(52,217,235,.13); }
+    .article-icon { width: 44px; height: 44px; border-radius: 13px; display: grid; place-items: center; background: #e2faff; color: #087d9d; }
+    .accordion-trigger { width: 100%; text-align: left; cursor: pointer; }
+    .accordion-content { display: grid; grid-template-rows: 0fr; transition: grid-template-rows .25s ease; }
+    .accordion-content > div { overflow: hidden; }
+    .accordion-item.open .accordion-content { grid-template-rows: 1fr; }
+    .case-toggle { color: #267f96; font-size: .875rem; font-weight: 700; opacity: .82; transition: color .2s ease, opacity .2s ease, transform .2s ease, background-color .2s ease; cursor: pointer; }
+    .case-toggle:hover, .case-toggle:focus-visible { color: #087d9d; opacity: 1; transform: translateX(2px); }
+    .case-toggle .case-chevron { transition: transform .24s ease, color .2s ease; }
+    .case-card.expanded .case-toggle { color: #8a6700; background: rgba(255,217,90,.14); border-radius: 999px; padding: .35rem .65rem; opacity: 1; }
+    .case-card.expanded .case-toggle .case-chevron { transform: rotate(180deg); color: #c18b00; }
+    .case-detail { display: none; }
+    .case-card.expanded .case-detail { display: block; animation: rise .25s ease both; }
+    .risk-high { background: #ffe5e5; color: #a12424; } 
+    .risk-medium { background: #fff2cc; color: #8a5c00; } 
+    .risk-low { background: #dbf9ee; color: #087052; }
+    .roadmap::before { content: ""; position: absolute; left: 22px; top: 34px; bottom: 34px; width: 2px; background: linear-gradient(var(--cyan), var(--yellow)); }
+    .road-step { position: relative; padding-left: 66px; }
+    .road-dot { position: absolute; left: 10px; top: 20px; width: 25px; height: 25px; border-radius: 50%; background: var(--navy); border: 5px solid var(--cyan); z-index: 1; }
+    .check-item { cursor: pointer; transition: .2s ease; }
+    .check-item.done { border-color: #49d9a6; background: #effff8; }
+    .check-dot { width: 23px; height: 23px; border: 2px solid #8ea1bc; border-radius: 7px; display: grid; place-items: center; flex: none; }
+    .check-item.done .check-dot { background: #16a36d; border-color: #16a36d; color: #fff; }
+    .poster { background: linear-gradient(145deg, #0b2350, #07152d 55%, #0d6b83); position: relative; overflow: hidden; }
+    .poster::after { content: ""; position: absolute; width: 270px; height: 270px; border: 1px solid rgba(52,217,235,.45); border-radius: 50%; right: -85px; top: -90px; box-shadow: 0 0 0 25px rgba(52,217,235,.06), 0 0 0 55px rgba(52,217,235,.05); }
+    @media(max-width:860px){ 
+      .desktop-nav { display: none; } 
+      .mobile-toggle { display: inline-flex; } 
+      .mobile-nav.open { display: flex; } 
+      .hero-grid { grid-template-columns: 1fr; } 
+      .nav-progress { display: none; } 
+    }
+    @media(min-width:861px){ 
+      .mobile-toggle, .mobile-nav { display: none !important; } 
+    }
+  </style>
+</head>
+<body>
+  <div class="site-shell">
+    
+    <!-- TOPBAR / NAVBAR (SAMA PERSIS DENGAN CANVA) -->
+    <header class="topbar sticky top-0 z-50 w-full">
+      <div class="w-full max-w-7xl mx-auto px-4 sm:px-6 py-3 flex items-center justify-between gap-3">
+        <button type="button" class="flex items-center gap-3 text-left bg-transparent border-0 cursor-pointer" data-route="home" aria-label="Kembali ke halaman Home">
+          <span class="brand-mark"><i data-lucide="shield-check" class="w-5 h-5"></i></span>
+          <span>
+            <span class="block text-white font-extrabold leading-tight text-sm sm:text-base">Demokrasi Digital</span>
+            <span class="block text-cyan-200 text-xs">Jaga Datamu, Jaga Hakmu</span>
+          </span>
+        </button>
+
+        <nav class="desktop-nav flex items-center gap-1" aria-label="Navigasi utama">
+          <button type="button" class="nav-button active px-3 py-2 rounded-xl text-sm" data-route="home">Home</button>
+          <button type="button" class="nav-button px-3 py-2 rounded-xl text-sm" data-route="perilaku">Perilaku</button>
+          <button type="button" class="nav-button px-3 py-2 rounded-xl text-sm" data-route="kasus">Studi Kasus</button>
+          <button type="button" class="nav-button px-3 py-2 rounded-xl text-sm" data-route="solusi">Solusi SMKN 7</button>
+          <button type="button" class="nav-button px-3 py-2 rounded-xl text-sm" data-route="kampanye">Kampanye</button>
+          <button type="button" class="nav-button px-3 py-2 rounded-xl text-sm font-bold flex items-center gap-1.5 text-yellow-300 border-yellow-400/30" data-route="penilaian">
+            <i data-lucide="star" class="w-3.5 h-3.5 fill-yellow-300"></i>
+            <span>Penilaian</span>
+          </button>
+        </nav>
+
+        <div class="nav-progress text-right hidden lg:block">
+          <span class="block text-[10px] uppercase tracking-widest text-cyan-200">Jelajah materi</span>
+          <span id="progress-label" class="text-sm font-bold text-white">01 / 06</span>
+        </div>
+
+        <button id="menu-toggle" type="button" class="mobile-toggle p-2 rounded-xl border border-cyan-200/30 text-cyan-100 bg-transparent" aria-label="Buka menu" aria-expanded="false">
+          <i data-lucide="menu" class="w-5 h-5"></i>
+        </button>
+      </div>
+
+      <nav id="mobile-nav" class="mobile-nav hidden flex-col px-4 pb-4 gap-2" aria-label="Navigasi mobile">
+        <button type="button" class="nav-button active text-left px-4 py-3 rounded-xl" data-route="home">Home</button>
+        <button type="button" class="nav-button text-left px-4 py-3 rounded-xl" data-route="perilaku">Perilaku Demokratis</button>
+        <button type="button" class="nav-button text-left px-4 py-3 rounded-xl" data-route="kasus">Studi Kasus Privasi Data</button>
+        <button type="button" class="nav-button text-left px-4 py-3 rounded-xl" data-route="solusi">Solusi untuk SMKN 7</button>
+        <button type="button" class="nav-button text-left px-4 py-3 rounded-xl" data-route="kampanye">Kampanye</button>
+        <button type="button" class="nav-button text-left px-4 py-3 rounded-xl text-yellow-300 font-bold" data-route="penilaian">⭐ Penilaian & Masukan</button>
+      </nav>
+    </header>
+
+    <!-- MAIN CONTENT CONTAINER -->
+    <main class="w-full max-w-7xl mx-auto px-4 sm:px-6 py-7 sm:py-10">
+      
+      <!-- BREADCRUMB -->
+      <div class="flex items-center gap-2 text-sm text-cyan-100 mb-6" aria-label="Lokasi halaman">
+        <i data-lucide="compass" class="w-4 h-4"></i>
+        <span>Proyek Edukasi</span>
+        <i data-lucide="chevron-right" class="w-4 h-4"></i>
+        <span id="breadcrumb" class="font-bold text-white">Home</span>
+      </div>
+
+      <!-- VIEW 1: HOME -->
+      <section id="home" class="view active" aria-labelledby="home-title">
+        <div class="hero-grid relative grid lg:grid-cols-[1.15fr_.85fr] gap-7 items-stretch">
+          <div class="hero-orb one"></div>
+          <div class="hero-orb two"></div>
+          
+          <div class="relative py-8 sm:py-14">
+            <p class="eyebrow mb-4">Proyek Pendidikan Kewarganegaraan Digital</p>
+            <h1 id="home-title" class="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-[1.05] text-white max-w-3xl">
+              Demokrasi di Era<br>Keterbukaan Informasi
+            </h1>
+            <p class="mt-4 text-xl sm:text-2xl font-bold text-yellow-200">
+              Jaga Datamu, Jaga Hakmu
+            </p>
+            <p class="mt-6 max-w-2xl text-base sm:text-lg leading-relaxed text-blue-100">
+              Kebebasan digital memberi ruang untuk bersuara, belajar, dan berkolaborasi. Namun, partisipasi yang bertanggung jawab juga berarti melindungi data pribadi serta menghormati hak setiap orang.
+            </p>
+            <div class="mt-8 flex flex-wrap gap-3">
+              <button type="button" class="cta cta-primary" data-route="perilaku">
+                <i data-lucide="users-round" class="w-5 h-5"></i>
+                <span>Pelajari Perilaku Demokratis</span>
+              </button>
+              <button type="button" class="cta cta-secondary" data-route="kasus">
+                <i data-lucide="search-check" class="w-5 h-5"></i>
+                <span>Lihat Studi Kasus</span>
+              </button>
+            </div>
+          </div>
+
+          <aside class="dark-card relative rounded-[28px] p-6 sm:p-8 overflow-hidden" aria-label="Prinsip demokrasi digital">
+            <div class="absolute right-0 top-0 p-5 opacity-30">
+              <i data-lucide="network" class="w-28 h-28 text-cyan-300"></i>
+            </div>
+            <div class="relative">
+              <span class="inline-flex p-3 rounded-2xl bg-cyan-300 text-[#07152d]">
+                <i data-lucide="lock-keyhole" class="w-7 h-7"></i>
+              </span>
+              <h2 class="mt-5 text-2xl font-extrabold text-white">
+                Ruang digital yang adil dimulai dari rasa aman
+              </h2>
+              <div class="glow-line my-5"></div>
+              <ul class="space-y-4 text-blue-100">
+                <li class="flex gap-3">
+                  <i data-lucide="check-circle-2" class="w-5 h-5 text-cyan-300 flex-none"></i>
+                  <span>Kebebasan berekspresi berjalan bersama tanggung jawab.</span>
+                </li>
+                <li class="flex gap-3">
+                  <i data-lucide="check-circle-2" class="w-5 h-5 text-cyan-300 flex-none"></i>
+                  <span>Data pribadi adalah bagian dari martabat dan keamanan diri.</span>
+                </li>
+                <li class="flex gap-3">
+                  <i data-lucide="check-circle-2" class="w-5 h-5 text-cyan-300 flex-none"></i>
+                  <span>Keputusan bijak dimulai sebelum tombol kirim ditekan.</span>
+                </li>
+              </ul>
+            </div>
+          </aside>
+        </div>
+
+        <!-- TIM PROYEK SECTION -->
+        <section class="mt-12" aria-labelledby="group-title">
+          <div class="flex items-end justify-between gap-4 mb-5">
+            <div>
+              <p class="eyebrow">Tim Proyek</p>
+              <h2 id="group-title" class="text-2xl sm:text-3xl font-extrabold text-white mt-2">Kelompok Proyek</h2>
+            </div>
+            <span class="text-sm text-cyan-100">6 anggota kelompok · XI SIJA 2</span>
+          </div>
+
+          <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
+            <article class="surface rounded-2xl p-4">
+              <div class="avatar">01</div>
+              <h3 class="mt-3 font-bold text-sm">Ahmad Romadon (1)</h3>
+              <p class="text-xs text-slate-500">Anggota Kelompok</p>
+            </article>
+            <article class="surface rounded-2xl p-4">
+              <div class="avatar">12</div>
+              <h3 class="mt-3 font-bold text-sm">Eka Novianti (12)</h3>
+              <p class="text-xs text-slate-500">Anggota Kelompok</p>
+            </article>
+            <article class="surface rounded-2xl p-4">
+              <div class="avatar">13</div>
+              <h3 class="mt-3 font-bold text-sm">Fatimah Zahra Riyanti (13)</h3>
+              <p class="text-xs text-slate-500">Anggota Kelompok</p>
+            </article>
+            <article class="surface rounded-2xl p-4">
+              <div class="avatar">17</div>
+              <h3 class="mt-3 font-bold text-sm">Katarina Flizca C. U. (17)</h3>
+              <p class="text-xs text-slate-500">Anggota Kelompok</p>
+            </article>
+            <article class="surface rounded-2xl p-4">
+              <div class="avatar">30</div>
+              <h3 class="mt-3 font-bold text-sm">Safa Putri Pratiwi (30)</h3>
+              <p class="text-xs text-slate-500">Anggota Kelompok</p>
+            </article>
+            <article class="surface rounded-2xl p-4">
+              <div class="avatar">32</div>
+              <h3 class="mt-3 font-bold text-sm">Satria Dani K. (32)</h3>
+              <p class="text-xs text-slate-500">Anggota Kelompok</p>
+            </article>
+          </div>
+        </section>
+
+        <!-- SEBELUM VS SESUDAH (SATU KLIK DAPAT MENGUBAH DAMPAK) -->
+        <section class="mt-12" aria-labelledby="compare-title">
+          <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-5">
+            <div>
+              <p class="eyebrow">Pilih kebiasaan yang lebih aman</p>
+              <h2 id="compare-title" class="text-2xl sm:text-3xl font-extrabold text-white mt-2">Satu klik dapat mengubah dampak</h2>
+            </div>
+            <div class="flex rounded-xl p-1 bg-white/10 border border-white/10">
+              <button id="before-btn" type="button" class="px-4 py-2 rounded-lg text-sm font-bold bg-yellow-300 text-[#07152d]">Sebelum</button>
+              <button id="after-btn" type="button" class="px-4 py-2 rounded-lg text-sm font-bold text-white">Sesudah</button>
+            </div>
+          </div>
+
+          <div id="comparison" class="comparison before surface rounded-[26px] p-5 sm:p-7 grid md:grid-cols-2 gap-5">
+            <article class="before-panel comparison-state rounded-2xl bg-[#fff6f4] border border-red-100 p-6">
+              <span class="inline-block status-bad px-3 py-1 rounded-full text-xs font-bold">SEBELUM</span>
+              <h3 class="text-xl font-extrabold mt-4 text-[#0a2245]">Data dibagikan tanpa berpikir</h3>
+              <p class="text-slate-600 mt-3 leading-relaxed text-sm">Foto kartu pelajar, nomor telepon, atau tangkapan layar diteruskan karena dianggap “hanya untuk grup”. Izin dan dampak jangka panjang belum dipikirkan.</p>
+              <div class="mt-5 flex gap-2 text-sm text-red-700 font-semibold">
+                <i data-lucide="triangle-alert" class="w-5 h-5"></i>
+                <span>Risiko privasi meningkat</span>
+              </div>
+            </article>
+
+            <article class="after-panel comparison-state rounded-2xl bg-[#f1fff9] border border-emerald-100 p-6">
+              <span class="inline-block status-good px-3 py-1 rounded-full text-xs font-bold">SESUDAH</span>
+              <h3 class="text-xl font-extrabold mt-4 text-[#0a2245]">Data dijaga, hak dihormati</h3>
+              <p class="text-slate-600 mt-3 leading-relaxed text-sm">Data dibagikan seperlunya, dengan persetujuan, melalui kanal yang aman. Hak setiap orang untuk merasa aman dan dihormati tetap dijaga.</p>
+              <div class="mt-5 flex gap-2 text-sm text-emerald-700 font-semibold">
+                <i data-lucide="shield-check" class="w-5 h-5"></i>
+                <span>Demokrasi digital lebih sehat</span>
+              </div>
+            </article>
+          </div>
+        </section>
+      </section>
+
+      <!-- VIEW 2: PERILAKU DEMOKRATIS -->
+      <section id="perilaku" class="view" aria-labelledby="perilaku-title">
+        <div class="max-w-3xl">
+          <p class="eyebrow">01 — Perilaku Demokratis</p>
+          <h1 id="perilaku-title" class="mt-3 text-4xl sm:text-5xl font-extrabold text-white leading-tight">
+            Perilaku Demokratis di Ruang Digital
+          </h1>
+          <p class="mt-5 text-lg text-blue-100 leading-relaxed">
+            Demokrasi bukan hanya soal menyampaikan pendapat. Dalam dunia digital, demokrasi juga berarti menghargai hak orang lain, memeriksa informasi, dan menggunakan kebebasan dengan tanggung jawab.
+          </p>
+        </div>
+
+        <div class="grid lg:grid-cols-3 gap-5 mt-10">
+          <article class="surface article-featured rounded-3xl p-6 lg:col-span-1">
+            <div class="article-icon"><i data-lucide="shield-user"></i></div>
+            <p class="eyebrow text-cyan-700 mt-5">Pasal 28G</p>
+            <h2 class="mt-2 text-2xl font-extrabold text-[#0a2245]">Perlindungan diri dan rasa aman</h2>
+            <p class="mt-4 text-slate-600 leading-relaxed text-sm">Pasal ini menegaskan hak atas perlindungan diri pribadi, kehormatan, martabat, rasa aman, dan perlindungan dari ancaman ketakutan. Dalam ruang digital, semangatnya mengajak kita untuk tidak memperlakukan data orang lain secara sembarangan.</p>
+            <p class="mt-4 text-xs font-bold text-cyan-800">Catatan edukasi: materi ini bukan nasihat hukum.</p>
+          </article>
+
+          <article class="surface rounded-3xl p-6">
+            <div class="article-icon"><i data-lucide="message-square-text"></i></div>
+            <p class="eyebrow text-cyan-700 mt-5">Pasal 28E</p>
+            <h2 class="mt-2 text-xl font-extrabold text-[#0a2245]">Kebebasan berpendapat</h2>
+            <p class="mt-4 text-slate-600 leading-relaxed text-sm">Kebebasan menyatakan pikiran dan sikap perlu dilakukan dengan menghormati hak, keselamatan, dan martabat orang lain. Opini yang baik tidak membutuhkan doxing atau mempermalukan.</p>
+          </article>
+
+          <article class="surface rounded-3xl p-6">
+            <div class="article-icon"><i data-lucide="radio"></i></div>
+            <p class="eyebrow text-cyan-700 mt-5">Pasal 28F</p>
+            <h2 class="mt-2 text-xl font-extrabold text-[#0a2245]">Hak berkomunikasi dan memperoleh informasi</h2>
+            <p class="mt-4 text-slate-600 leading-relaxed text-sm">Hak untuk berkomunikasi dan memperoleh informasi berjalan bersama kemampuan memeriksa sumber, memahami konteks, dan tidak menyebarkan data pribadi tanpa alasan yang sah.</p>
+          </article>
+        </div>
+
+        <div class="grid lg:grid-cols-[1fr_.85fr] gap-7 mt-10">
+          <section class="surface rounded-3xl p-6 sm:p-8" aria-labelledby="praktik-title">
+            <div class="flex items-center gap-3">
+              <span class="article-icon"><i data-lucide="list-checks"></i></span>
+              <div>
+                <p class="eyebrow text-cyan-700">Kebiasaan sehari-hari</p>
+                <h2 id="praktik-title" class="text-2xl font-extrabold text-[#0a2245]">Dalam praktik digital</h2>
+              </div>
+            </div>
+            <ul class="mt-6 space-y-4 text-sm">
+              <li class="flex gap-3"><i data-lucide="check-circle-2" class="text-emerald-600 w-5 h-5 flex-none"></i><span><b>Verifikasi sebelum membagikan:</b> cek sumber, konteks, dan penerima informasi.</span></li>
+              <li class="flex gap-3"><i data-lucide="check-circle-2" class="text-emerald-600 w-5 h-5 flex-none"></i><span><b>Hormati persetujuan:</b> tanyakan izin sebelum mengunggah foto atau data teman.</span></li>
+              <li class="flex gap-3"><i data-lucide="check-circle-2" class="text-emerald-600 w-5 h-5 flex-none"></i><span><b>Sampaikan opini secara bertanggung jawab:</b> fokus pada gagasan, bukan serangan pribadi.</span></li>
+              <li class="flex gap-3"><i data-lucide="check-circle-2" class="text-emerald-600 w-5 h-5 flex-none"></i><span><b>Lindungi kata sandi:</b> gunakan frasa sandi kuat dan jangan membagikannya.</span></li>
+              <li class="flex gap-3"><i data-lucide="check-circle-2" class="text-emerald-600 w-5 h-5 flex-none"></i><span><b>Laporkan konten berbahaya:</b> simpan bukti seperlunya dan gunakan kanal pelaporan yang tepat.</span></li>
+            </ul>
+          </section>
+
+          <section class="space-y-3" aria-label="Penjelasan perilaku demokratis">
+            <article class="accordion-item dark-card rounded-2xl overflow-hidden open">
+              <button type="button" class="accordion-trigger p-5 flex items-center justify-between gap-4" aria-expanded="true">
+                <span class="font-bold text-white">Hak</span>
+                <i data-lucide="chevron-down" class="text-cyan-300 w-5 h-5"></i>
+              </button>
+              <div class="accordion-content">
+                <div>
+                  <p class="px-5 pb-5 text-blue-100 leading-relaxed text-sm">Setiap orang berhak memperoleh informasi, berpendapat, dan menjaga keamanan dirinya. Hak digital perlu dihormati tanpa membeda-bedakan teman di ruang kelas maupun ruang daring.</p>
+                </div>
+              </div>
+            </article>
+
+            <article class="accordion-item dark-card rounded-2xl overflow-hidden">
+              <button type="button" class="accordion-trigger p-5 flex items-center justify-between gap-4" aria-expanded="false">
+                <span class="font-bold text-white">Tanggung jawab</span>
+                <i data-lucide="chevron-down" class="text-cyan-300 w-5 h-5"></i>
+              </button>
+              <div class="accordion-content">
+                <div>
+                  <p class="px-5 pb-5 text-blue-100 leading-relaxed text-sm">Gunakan kebebasan dengan pertimbangan: jangan menyebar hoaks, jangan mengumbar data pribadi, dan berikan ruang bagi pendapat yang berbeda secara santun.</p>
+                </div>
+              </div>
+            </article>
+
+            <article class="accordion-item dark-card rounded-2xl overflow-hidden">
+              <button type="button" class="accordion-trigger p-5 flex items-center justify-between gap-4" aria-expanded="false">
+                <span class="font-bold text-white">Contoh tindakan</span>
+                <i data-lucide="chevron-down" class="text-cyan-300 w-5 h-5"></i>
+              </button>
+              <div class="accordion-content">
+                <div>
+                  <p class="px-5 pb-5 text-blue-100 leading-relaxed text-sm">Kaburkan informasi sensitif pada tangkapan layar, minta izin sebelum memotret, dan pilih kata-kata yang membangun saat berdiskusi di media sosial atau grup kelas.</p>
+                </div>
+              </div>
+            </article>
+          </section>
+        </div>
+      </section>
+
+      <!-- VIEW 3: STUDI KASUS -->
+      <section id="kasus" class="view" aria-labelledby="kasus-title">
+        <div class="max-w-3xl">
+          <p class="eyebrow">02 — Studi Kasus Privasi Data</p>
+          <h1 id="kasus-title" class="mt-3 text-4xl sm:text-5xl font-extrabold text-white">
+            Studi Kasus Privasi Data
+          </h1>
+          <p class="mt-5 text-lg text-blue-100 leading-relaxed">
+            Kasus di lingkungan sekolah sering terlihat sederhana. Dengan melihat data yang berisiko, dampak, dan tindakan aman, kita dapat memilih respons yang lebih menghormati hak semua pihak.
+          </p>
+        </div>
+
+        <div class="grid lg:grid-cols-[1.5fr_.65fr] gap-7 mt-10">
+          <div class="space-y-4">
+            
+            <!-- Kasus 1 -->
+            <article class="case-card surface rounded-3xl p-6">
+              <div class="flex flex-wrap items-center justify-between gap-3">
+                <div class="flex items-center gap-3">
+                  <span class="article-icon"><i data-lucide="id-card"></i></span>
+                  <div>
+                    <h2 class="font-extrabold text-xl text-[#0a2245]">Foto kartu pelajar di grup chat</h2>
+                    <p class="text-sm text-slate-500">Situasi 01</p>
+                  </div>
+                </div>
+                <span class="risk-high px-3 py-1 rounded-full text-xs font-bold">Risiko Tinggi</span>
+              </div>
+              <div class="grid sm:grid-cols-2 gap-4 mt-5 text-sm">
+                <div><b>Data yang berisiko</b><p class="text-slate-600 mt-1">Nama, nomor identitas, foto, dan informasi sekolah.</p></div>
+                <div><b>Dampak</b><p class="text-slate-600 mt-1">Penyalahgunaan identitas atau penyebaran di luar tujuan awal.</p></div>
+              </div>
+              <button type="button" class="case-toggle mt-5 inline-flex items-center gap-2" aria-expanded="false">
+                Lihat analisis <i data-lucide="chevron-down" class="case-chevron w-4 h-4"></i>
+              </button>
+              <div class="case-detail border-t border-slate-200 mt-5 pt-5 grid sm:grid-cols-2 gap-4 text-sm">
+                <div><b>Analisis Demokratis</b><p class="mt-1 text-slate-600">Hak atas perlindungan diri perlu dihormati; kebutuhan administrasi tidak berarti data boleh diteruskan ke semua orang.</p></div>
+                <div><b>Tindakan Aman</b><p class="mt-1 text-slate-600">Kirim hanya ke pihak berwenang melalui kanal terbatas; tutup bagian data yang tidak diperlukan.</p></div>
+              </div>
+            </article>
+
+            <!-- Kasus 2 -->
+            <article class="case-card surface rounded-3xl p-6">
+              <div class="flex flex-wrap items-center justify-between gap-3">
+                <div class="flex items-center gap-3">
+                  <span class="article-icon"><i data-lucide="clipboard-list"></i></span>
+                  <div>
+                    <h2 class="font-extrabold text-xl text-[#0a2245]">Absensi melalui formulir yang tidak aman</h2>
+                    <p class="text-sm text-slate-500">Situasi 02</p>
+                  </div>
+                </div>
+                <span class="risk-medium px-3 py-1 rounded-full text-xs font-bold">Risiko Sedang</span>
+              </div>
+              <div class="grid sm:grid-cols-2 gap-4 mt-5 text-sm">
+                <div><b>Data yang berisiko</b><p class="text-slate-600 mt-1">Nama, kelas, nomor kontak, dan riwayat kehadiran.</p></div>
+                <div><b>Dampak</b><p class="text-slate-600 mt-1">Data dapat terlihat atau diubah oleh orang yang tidak berkepentingan.</p></div>
+              </div>
+              <button type="button" class="case-toggle mt-5 inline-flex items-center gap-2" aria-expanded="false">
+                Lihat analisis <i data-lucide="chevron-down" class="case-chevron w-4 h-4"></i>
+              </button>
+              <div class="case-detail border-t border-slate-200 mt-5 pt-5 grid sm:grid-cols-2 gap-4 text-sm">
+                <div><b>Analisis Demokratis</b><p class="mt-1 text-slate-600">Akses informasi harus seimbang dengan perlindungan dan tujuan pengumpulan data yang jelas.</p></div>
+                <div><b>Tindakan Aman</b><p class="mt-1 text-slate-600">Batasi akses editor, jelaskan tujuan pengumpulan, dan gunakan akun atau formulir resmi.</p></div>
+              </div>
+            </article>
+
+            <!-- Kasus 3 -->
+            <article class="case-card surface rounded-3xl p-6">
+              <div class="flex flex-wrap items-center justify-between gap-3">
+                <div class="flex items-center gap-3">
+                  <span class="article-icon"><i data-lucide="smartphone"></i></span>
+                  <div>
+                    <h2 class="font-extrabold text-xl text-[#0a2245]">Meneruskan screenshot nomor telepon</h2>
+                    <p class="text-sm text-slate-500">Situasi 03</p>
+                  </div>
+                </div>
+                <span class="risk-medium px-3 py-1 rounded-full text-xs font-bold">Risiko Sedang</span>
+              </div>
+              <div class="grid sm:grid-cols-2 gap-4 mt-5 text-sm">
+                <div><b>Data yang berisiko</b><p class="text-slate-600 mt-1">Nomor telepon, foto profil, dan isi percakapan.</p></div>
+                <div><b>Dampak</b><p class="text-slate-600 mt-1">Kontak dapat menerima pesan tidak diinginkan atau mengalami tekanan sosial.</p></div>
+              </div>
+              <button type="button" class="case-toggle mt-5 inline-flex items-center gap-2" aria-expanded="false">
+                Lihat analisis <i data-lucide="chevron-down" class="case-chevron w-4 h-4"></i>
+              </button>
+              <div class="case-detail border-t border-slate-200 mt-5 pt-5 grid sm:grid-cols-2 gap-4 text-sm">
+                <div><b>Analisis Demokratis</b><p class="mt-1 text-slate-600">Menyampaikan informasi tidak boleh menghapus hak seseorang untuk mengendalikan data pribadinya.</p></div>
+                <div><b>Tindakan Aman</b><p class="mt-1 text-slate-600">Hapus atau kaburkan nomor, minta izin, dan gunakan ringkasan tanpa identitas bila perlu.</p></div>
+              </div>
+            </article>
+          </div>
+
+          <aside class="dark-card h-fit rounded-3xl p-6 sticky top-24">
+            <p class="eyebrow">Ringkasan cepat</p>
+            <h2 class="mt-2 text-2xl font-extrabold text-white">Baca risiko, pilih respons</h2>
+            <div class="mt-6 space-y-5 text-sm">
+              <div>
+                <p class="text-yellow-200 font-bold">Masalah utama</p>
+                <p class="text-blue-100 mt-1">Data dibagikan lebih luas daripada kebutuhan awal.</p>
+              </div>
+              <div>
+                <p class="text-yellow-200 font-bold">Hak yang terdampak</p>
+                <p class="text-blue-100 mt-1">Perlindungan diri, rasa aman, martabat, dan kendali atas informasi pribadi.</p>
+              </div>
+              <div>
+                <p class="text-yellow-200 font-bold">Respons yang tepat</p>
+                <p class="text-blue-100 mt-1">Berhenti meneruskan, minimalkan data, beri tahu pihak terkait, lalu gunakan jalur yang lebih aman.</p>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <!-- VIEW 4: SOLUSI UNTUK SMKN 7 -->
+      <section id="solusi" class="view" aria-labelledby="solusi-title">
+        <div class="max-w-3xl">
+          <p class="eyebrow">03 — Solusi untuk SMKN 7</p>
+          <h1 id="solusi-title" class="mt-3 text-4xl sm:text-5xl font-extrabold text-white">
+            Solusi Nyata untuk SMKN 7
+          </h1>
+          <p class="mt-5 text-lg text-blue-100 leading-relaxed">
+            Keamanan data tidak harus rumit. Langkah kecil yang disepakati bersama dapat membangun kebiasaan digital yang lebih aman, terbuka, dan menghormati hak warga sekolah.
+          </p>
+        </div>
+
+        <div class="grid lg:grid-cols-[1fr_.85fr] gap-8 mt-10">
+          <section class="relative roadmap space-y-5" aria-label="Roadmap aksi">
+            <article class="road-step surface rounded-3xl p-6">
+              <span class="road-dot"></span>
+              <p class="eyebrow text-cyan-700">Horizon 01</p>
+              <h2 class="text-2xl font-extrabold mt-1 text-[#0a2245]">Mulai Sekarang</h2>
+              <ul class="mt-4 space-y-2 text-slate-600 list-disc pl-5 text-sm">
+                <li>Gunakan prinsip persetujuan sebelum mengumpulkan data.</li>
+                <li>Bagikan template pemberitahuan privasi sederhana.</li>
+                <li>Terapkan aturan berbagi file dan akses seperlunya.</li>
+              </ul>
+            </article>
+
+            <article class="road-step surface rounded-3xl p-6">
+              <span class="road-dot" style="border-color:#ffd95a"></span>
+              <p class="eyebrow text-yellow-700">Horizon 02</p>
+              <h2 class="text-2xl font-extrabold mt-1 text-[#0a2245]">30 Hari</h2>
+              <ul class="mt-4 space-y-2 text-slate-600 list-disc pl-5 text-sm">
+                <li>Kampanye kesadaran kata sandi kuat dan MFA.</li>
+                <li>Susun alur pelaporan insiden yang mudah dipahami.</li>
+                <li>Adakan lokakarya literasi digital untuk siswa.</li>
+              </ul>
+            </article>
+
+            <article class="road-step surface rounded-3xl p-6">
+              <span class="road-dot" style="border-color:#83a8ff"></span>
+              <p class="eyebrow text-blue-700">Horizon 03</p>
+              <h2 class="text-2xl font-extrabold mt-1 text-[#0a2245]">Berikutnya</h2>
+              <ul class="mt-4 space-y-2 text-slate-600 list-disc pl-5 text-sm">
+                <li>Lakukan audit inventaris data secara berkala.</li>
+                <li>Tinjau akses akun, folder, dan perangkat bersama.</li>
+                <li>Evaluasi kebiasaan keamanan bersama tim sekolah.</li>
+              </ul>
+            </article>
+          </section>
+
+          <aside class="space-y-5">
+            <section class="surface rounded-3xl p-6 sm:p-7" aria-labelledby="checklist-title">
+              <div class="flex items-start justify-between gap-4">
+                <div>
+                  <p class="eyebrow text-cyan-700">Untuk sesi ini</p>
+                  <h2 id="checklist-title" class="mt-1 text-2xl font-extrabold text-[#0a2245]">Checklist aksi hari ini</h2>
+                </div>
+                <span id="check-count" class="rounded-full bg-cyan-100 text-cyan-900 px-3 py-1 font-bold text-sm">0 / 6</span>
+              </div>
+              <div class="mt-5 h-3 bg-slate-100 rounded-full overflow-hidden">
+                <div id="check-progress" class="h-full bg-gradient-to-r from-cyan-400 to-emerald-400 rounded-full transition-all duration-300" style="width:0%"></div>
+              </div>
+              <div class="mt-5 space-y-2 text-sm">
+                <button type="button" class="check-item w-full flex items-center gap-3 text-left border border-slate-200 rounded-xl p-3 bg-white">
+                  <span class="check-dot"><i data-lucide="check" class="w-4 h-4 hidden"></i></span>
+                  <span>Siapkan pemberitahuan privasi singkat.</span>
+                </button>
+                <button type="button" class="check-item w-full flex items-center gap-3 text-left border border-slate-200 rounded-xl p-3 bg-white">
+                  <span class="check-dot"><i data-lucide="check" class="w-4 h-4 hidden"></i></span>
+                  <span>Periksa siapa yang memiliki akses file.</span>
+                </button>
+                <button type="button" class="check-item w-full flex items-center gap-3 text-left border border-slate-200 rounded-xl p-3 bg-white">
+                  <span class="check-dot"><i data-lucide="check" class="w-4 h-4 hidden"></i></span>
+                  <span>Aktifkan MFA pada akun yang tersedia.</span>
+                </button>
+                <button type="button" class="check-item w-full flex items-center gap-3 text-left border border-slate-200 rounded-xl p-3 bg-white">
+                  <span class="check-dot"><i data-lucide="check" class="w-4 h-4 hidden"></i></span>
+                  <span>Sepakati aturan berbagi screenshot.</span>
+                </button>
+                <button type="button" class="check-item w-full flex items-center gap-3 text-left border border-slate-200 rounded-xl p-3 bg-white">
+                  <span class="check-dot"><i data-lucide="check" class="w-4 h-4 hidden"></i></span>
+                  <span>Kenalkan kanal pelaporan yang aman.</span>
+                </button>
+                <button type="button" class="check-item w-full flex items-center gap-3 text-left border border-slate-200 rounded-xl p-3 bg-white">
+                  <span class="check-dot"><i data-lucide="check" class="w-4 h-4 hidden"></i></span>
+                  <span>Rencanakan sesi literasi digital.</span>
+                </button>
+              </div>
+              <p class="mt-4 text-xs text-slate-500">Status checklist hanya berlaku selama sesi ini dan tidak disimpan.</p>
+            </section>
+          </aside>
+        </div>
+
+        <section class="mt-9" aria-labelledby="roles-title">
+          <p class="eyebrow">Tanggung jawab bersama</p>
+          <h2 id="roles-title" class="text-2xl font-extrabold text-white mt-2">Peran dalam menjaga ruang digital sekolah</h2>
+          <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-5">
+            <article class="dark-card rounded-2xl p-5">
+              <i data-lucide="graduation-cap" class="text-cyan-300"></i>
+              <h3 class="font-bold text-white mt-4">Siswa</h3>
+              <p class="text-sm text-blue-100 mt-2">Berbagi dengan izin, menjaga akun, dan berani melapor.</p>
+            </article>
+            <article class="dark-card rounded-2xl p-5">
+              <i data-lucide="book-open-check" class="text-cyan-300"></i>
+              <h3 class="font-bold text-white mt-4">Guru</h3>
+              <p class="text-sm text-blue-100 mt-2">Menjadi teladan, menjelaskan tujuan data, dan membimbing diskusi.</p>
+            </article>
+            <article class="dark-card rounded-2xl p-5">
+              <i data-lucide="settings" class="text-cyan-300"></i>
+              <h3 class="font-bold text-white mt-4">Admin</h3>
+              <p class="text-sm text-blue-100 mt-2">Mengatur akses, perangkat, serta praktik keamanan teknis.</p>
+            </article>
+            <article class="dark-card rounded-2xl p-5">
+              <i data-lucide="building-2" class="text-cyan-300"></i>
+              <h3 class="font-bold text-white mt-4">Tim Sekolah</h3>
+              <p class="text-sm text-blue-100 mt-2">Menyusun aturan, respons insiden, dan evaluasi berkelanjutan.</p>
+            </article>
+          </div>
+        </section>
+      </section>
+
+      <!-- VIEW 5: KAMPANYE SEKOLAH -->
+      <section id="kampanye" class="view" aria-labelledby="kampanye-title">
+        <div class="grid lg:grid-cols-[1.08fr_.92fr] gap-7 items-center">
+          <div>
+            <p class="eyebrow">04 — Kampanye Sekolah</p>
+            <h1 id="kampanye-title" class="mt-3 text-4xl sm:text-6xl font-extrabold text-white leading-tight">
+              Jaga Datamu, Jaga Hakmu
+            </h1>
+            <p class="mt-5 text-lg text-blue-100 leading-relaxed max-w-xl">
+              Kampanye yang baik tidak berhenti pada poster. Jadikan setiap izin, setiap kata sandi, dan setiap unggahan sebagai tindakan kecil untuk melindungi hak bersama.
+            </p>
+            <button type="button" class="cta cta-primary mt-7" data-route="solusi">
+              <i data-lucide="arrow-right" class="w-5 h-5"></i>
+              <span>Mulai dari satu kebiasaan</span>
+            </button>
+          </div>
+
+          <aside class="poster rounded-[30px] min-h-[330px] p-8 flex flex-col justify-between">
+            <div class="relative z-10">
+              <span class="inline-flex bg-yellow-300 text-[#07152d] rounded-full px-3 py-1 text-xs font-extrabold">KAMPANYE DIGITAL AMAN</span>
+              <i data-lucide="shield-check" class="w-20 h-20 mt-8 text-cyan-300"></i>
+            </div>
+            <div class="relative z-10">
+              <p class="font-mono text-cyan-200 text-sm tracking-widest">HAK • AMAN • BERTANGGUNG JAWAB</p>
+              <h2 class="text-4xl sm:text-5xl font-extrabold text-white leading-none mt-3">Jaga Datamu,<br><span class="text-yellow-200">Jaga Hakmu.</span></h2>
+            </div>
+          </aside>
+        </div>
+
+        <section class="mt-11" aria-labelledby="slogan-title">
+          <p class="eyebrow">Pesan yang mudah diingat</p>
+          <h2 id="slogan-title" class="text-2xl font-extrabold text-white mt-2">Slogan kampanye</h2>
+          <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-5">
+            <article class="surface rounded-2xl p-5 border-t-4 border-cyan-400">
+              <i data-lucide="brain" class="text-cyan-700"></i>
+              <h3 class="mt-4 font-extrabold text-[#0a2245]">Berpikir Sebelum Membagikan</h3>
+            </article>
+            <article class="surface rounded-2xl p-5 border-t-4 border-yellow-400">
+              <i data-lucide="badge-check" class="text-yellow-600"></i>
+              <h3 class="mt-4 font-extrabold text-[#0a2245]">Izin Dulu, Baru Unggah</h3>
+            </article>
+            <article class="surface rounded-2xl p-5 border-t-4 border-emerald-400">
+              <i data-lucide="shield" class="text-emerald-600"></i>
+              <h3 class="mt-4 font-extrabold text-[#0a2245]">Data Aman, Demokrasi Nyaman</h3>
+            </article>
+            <article class="surface rounded-2xl p-5 border-t-4 border-blue-400">
+              <i data-lucide="mouse-pointer-click" class="text-blue-600"></i>
+              <h3 class="mt-4 font-extrabold text-[#0a2245]">Klik Bijak, Hak Tetap Tegak</h3>
+            </article>
+          </div>
+        </section>
+
+        <section class="mt-11 surface rounded-3xl p-6 sm:p-8" aria-labelledby="flow-title">
+          <div class="flex flex-col sm:flex-row sm:justify-between gap-4">
+            <div>
+              <p class="eyebrow text-cyan-700">Infografik sederhana</p>
+              <h2 id="flow-title" class="text-2xl font-extrabold text-[#0a2245] mt-2">Alur perlindungan data</h2>
+            </div>
+            <p class="text-slate-500 max-w-sm text-sm">Empat langkah kecil untuk membuat keputusan digital yang lebih aman.</p>
+          </div>
+
+          <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 mt-7">
+            <div class="rounded-2xl bg-cyan-50 p-5">
+              <i data-lucide="scan-search" class="text-cyan-700"></i>
+              <h3 class="font-extrabold mt-4 text-[#0a2245]">1. Kenali</h3>
+              <p class="text-sm text-slate-600 mt-2">Tandai data pribadi dan informasi sensitif.</p>
+            </div>
+            <div class="rounded-2xl bg-yellow-50 p-5">
+              <i data-lucide="search-check" class="text-yellow-700"></i>
+              <h3 class="font-extrabold mt-4 text-[#0a2245]">2. Periksa</h3>
+              <p class="text-sm text-slate-600 mt-2">Cek tujuan, penerima, serta izin sebelum berbagi.</p>
+            </div>
+            <div class="rounded-2xl bg-emerald-50 p-5">
+              <i data-lucide="lock-keyhole" class="text-emerald-700"></i>
+              <h3 class="font-extrabold mt-4 text-[#0a2245]">3. Lindungi</h3>
+              <p class="text-sm text-slate-600 mt-2">Pakai akses terbatas dan kata sandi yang kuat.</p>
+            </div>
+            <div class="rounded-2xl bg-blue-50 p-5">
+              <i data-lucide="flag" class="text-blue-700"></i>
+              <h3 class="font-extrabold mt-4 text-[#0a2245]">4. Laporkan</h3>
+              <p class="text-sm text-slate-600 mt-2">Gunakan jalur yang tepat bila ada risiko atau pelanggaran.</p>
+            </div>
+          </div>
+        </section>
+      </section>
+
+      <!-- VIEW 6: PENILAIAN & MASUKAN ANTAR KELOMPOK -->
+      <section id="penilaian" class="view" aria-labelledby="penilaian-title">
+        <div class="max-w-3xl">
+          <p class="eyebrow">05 — Evaluasi Antar Kelompok</p>
+          <h1 id="penilaian-title" class="mt-3 text-4xl sm:text-5xl font-extrabold text-white leading-tight">
+            Penilaian & Masukan Kelompok
+          </h1>
+          <p class="mt-5 text-lg text-blue-100 leading-relaxed">
+            Berikan nilai, apresiasi, atau kritik dan saran untuk proyek edukasi privasi data kami agar presentasi dan pembelajaran kewarganegaraan digital ini semakin baik.
+          </p>
+        </div>
+
+        <div class="grid lg:grid-cols-[1.15fr_.85fr] gap-8 mt-10 items-start">
+          
+          <!-- FORM PENILAIAN -->
+          <div class="surface rounded-3xl p-6 sm:p-8 shadow-2xl relative overflow-hidden" id="form-card-container">
+            <div class="flex items-center gap-3 mb-6">
+              <div class="article-icon bg-yellow-100 text-yellow-700">
+                <i data-lucide="edit-3"></i>
+              </div>
+              <div>
+                <h2 class="text-xl font-extrabold text-[#0a2245]">Form Penilaian Proyek</h2>
+                <p class="text-xs text-slate-500">Kirimkan masukan & evaluasi untuk kelompok kami</p>
+              </div>
+            </div>
+
+            <!-- Formulir Pengiriman -->
+            <form id="feedback-form" action="https://formsubmit.co/faatzahra156@gmail.com" method="POST" class="space-y-5">
+              <input type="hidden" name="_subject" id="email-subject" value="⭐ Penilaian Baru Proyek PKn SMKN 7">
+              <input type="hidden" name="_template" value="table">
+              <input type="hidden" name="_captcha" value="false">
+              <input type="hidden" name="_next" value="https://tugas-bab2.vercel.app">
+
+              <!-- Nama Penilai -->
+              <div>
+                <label for="feedback-name" class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-2">
+                  Nama Kelompok / Penilai <span class="text-red-500">*</span>
+                </label>
+                <input 
+                  type="text" 
+                  id="feedback-name" 
+                  name="Nama_Penilai"
+                  required 
+                  placeholder="Contoh: Kelompok 3 (XI SIJA 2) / Bpk-Ibu Guru" 
+                  class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:border-cyan-500 focus:ring-2 focus:ring-cyan-200 outline-none text-sm text-[#0a2245] transition-all bg-white"
+                >
+              </div>
+
+              <!-- Rating Bintang -->
+              <div>
+                <label class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-2">
+                  Rating Penilaian Proyek <span class="text-red-500">*</span>
+                </label>
+                <div class="flex items-center gap-2">
+                  <div class="flex items-center gap-1.5" id="star-rating-container">
+                    <button type="button" class="star-btn p-1 text-slate-300 hover:text-yellow-400 transition-colors focus:outline-none" data-rating="1">
+                      <i data-lucide="star" class="w-7 h-7 fill-current"></i>
+                    </button>
+                    <button type="button" class="star-btn p-1 text-slate-300 hover:text-yellow-400 transition-colors focus:outline-none" data-rating="2">
+                      <i data-lucide="star" class="w-7 h-7 fill-current"></i>
+                    </button>
+                    <button type="button" class="star-btn p-1 text-slate-300 hover:text-yellow-400 transition-colors focus:outline-none" data-rating="3">
+                      <i data-lucide="star" class="w-7 h-7 fill-current"></i>
+                    </button>
+                    <button type="button" class="star-btn p-1 text-slate-300 hover:text-yellow-400 transition-colors focus:outline-none" data-rating="4">
+                      <i data-lucide="star" class="w-7 h-7 fill-current"></i>
+                    </button>
+                    <button type="button" class="star-btn p-1 text-slate-300 hover:text-yellow-400 transition-colors focus:outline-none" data-rating="5">
+                      <i data-lucide="star" class="w-7 h-7 fill-current"></i>
+                    </button>
+                  </div>
+                  <span id="star-label" class="text-xs font-bold text-slate-600 ml-2 bg-slate-100 px-2.5 py-1 rounded-full">5 / 5 (Sangat Bagus)</span>
+                </div>
+                <input type="hidden" id="selected-rating" name="Rating_Bintang" value="5 / 5 Bintang (Sangat Bagus!)">
+              </div>
+
+              <!-- Kategori Ulasan -->
+              <div>
+                <label for="feedback-category" class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-2">
+                  Kategori Masukan
+                </label>
+                <select id="feedback-category" name="Kategori_Masukan" class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:border-cyan-500 focus:ring-2 focus:ring-cyan-200 outline-none text-sm text-[#0a2245] transition-all bg-white cursor-pointer">
+                  <option value="⭐ Kelebihan & Apresiasi">⭐ Kelebihan & Apresiasi</option>
+                  <option value="💡 Masukan & Kekurangan">💡 Masukan & Kekurangan</option>
+                  <option value="🛠️ Saran Perbaikan Fitur">🛠️ Saran Perbaikan Fitur / Materi</option>
+                  <option value="💬 Ulasan Umum">💬 Komentar Umum</option>
+                </select>
+              </div>
+
+              <!-- Isi Komentar -->
+              <div>
+                <label for="feedback-message" class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-2">
+                  Ulasan & Evaluasi Lengkap <span class="text-red-500">*</span>
+                </label>
+                <textarea 
+                  id="feedback-message" 
+                  name="Pesan_Evaluasi"
+                  rows="4" 
+                  required 
+                  placeholder="Tuliskan apresiasi apa yang sudah sangat bagus, atau kekurangan apa yang perlu diperbaiki kelompok kami..." 
+                  class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:border-cyan-500 focus:ring-2 focus:ring-cyan-200 outline-none text-sm text-[#0a2245] transition-all resize-none bg-white"
+                ></textarea>
+              </div>
+
+              <!-- Submit Button -->
+              <div class="pt-2">
+                <button type="submit" id="btn-submit-feedback" class="cta cta-primary w-full py-3.5 rounded-xl justify-center font-bold text-sm shadow-lg flex items-center gap-2">
+                  <i data-lucide="send" class="w-4 h-4"></i>
+                  <span id="btn-submit-text">Kirim Penilaian</span>
+                </button>
+              </div>
+            </form>
+
+            <!-- Success State Message (Hidden by default) -->
+            <div id="feedback-success-card" class="hidden py-8 text-center space-y-4">
+              <div class="w-16 h-16 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mx-auto shadow-lg">
+                <i data-lucide="check-circle" class="w-10 h-10"></i>
+              </div>
+              <h3 class="text-2xl font-extrabold text-[#0a2245]">Penilaian Berhasil Terkirim!</h3>
+              <p class="text-sm text-slate-600 max-w-md mx-auto leading-relaxed">
+                Terima kasih banyak atas waktu dan penilaian yang Anda berikan untuk kelompok kami.
+              </p>
+              <div class="pt-4">
+                <button type="button" onclick="resetFeedbackForm()" class="cta cta-secondary text-[#0a2245] border-slate-300 hover:bg-slate-100 text-xs px-5 py-2.5 rounded-xl font-bold inline-flex items-center gap-2">
+                  <i data-lucide="rotate-ccw" class="w-3.5 h-3.5"></i>
+                  <span>Kirim Penilaian Lain</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- KOLOM KANAN: RUBRIK & KRITERIA EVALUASI -->
+          <div class="space-y-5">
+
+            <!-- Card: 4 Kriteria Penilaian Proyek -->
+            <div class="surface rounded-3xl p-6 sm:p-7 shadow-xl">
+              <div class="flex items-center gap-2 mb-4">
+                <span class="article-icon bg-cyan-100 text-cyan-800"><i data-lucide="list-checks"></i></span>
+                <h3 class="text-lg font-extrabold text-[#0a2245]">Rubrik Penilaian Tugas</h3>
+              </div>
+              
+              <ul class="space-y-3.5 text-xs text-slate-700">
+                <li class="flex items-start gap-2.5 p-2.5 rounded-xl bg-slate-50 border border-slate-100">
+                  <i data-lucide="check" class="w-4 h-4 text-emerald-600 shrink-0 mt-0.5"></i>
+                  <div>
+                    <span class="font-bold block text-slate-900">1. Kesesuaian Materi UUD 1945</span>
+                    <span class="text-slate-500">Penerapan Pasal 28E, 28F, dan 28G dalam dunia digital.</span>
+                  </div>
+                </li>
+
+                <li class="flex items-start gap-2.5 p-2.5 rounded-xl bg-slate-50 border border-slate-100">
+                  <i data-lucide="check" class="w-4 h-4 text-emerald-600 shrink-0 mt-0.5"></i>
+                  <div>
+                    <span class="font-bold block text-slate-900">2. Desain & Interaktivitas Web</span>
+                    <span class="text-slate-500">Kerapian tata letak, kemudahan navigasi, dan fitur sebelum/sesudah.</span>
+                  </div>
+                </li>
+
+                <li class="flex items-start gap-2.5 p-2.5 rounded-xl bg-slate-50 border border-slate-100">
+                  <i data-lucide="check" class="w-4 h-4 text-emerald-600 shrink-0 mt-0.5"></i>
+                  <div>
+                    <span class="font-bold block text-slate-900">3. Relevansi Kasus Sekolah</span>
+                    <span class="text-slate-500">Solusi nyata atas privasi data siswa di lingkungan SMKN 7.</span>
+                  </div>
+                </li>
+
+                <li class="flex items-start gap-2.5 p-2.5 rounded-xl bg-slate-50 border border-slate-100">
+                  <i data-lucide="check" class="w-4 h-4 text-emerald-600 shrink-0 mt-0.5"></i>
+                  <div>
+                    <span class="font-bold block text-slate-900">4. Checklist & Aksi Nyata</span>
+                    <span class="text-slate-500">Langkah terukur yang bisa dipraktikkan langsung oleh warga sekolah.</span>
+                  </div>
+                </li>
+              </ul>
+            </div>
+
+          </div>
+
+        </div>
+      </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="mt-8 border-t border-cyan-200/15 bg-[#061127]">
+      <div class="w-full max-w-7xl mx-auto px-4 sm:px-6 py-7 flex flex-col sm:flex-row gap-3 justify-between text-sm text-blue-200">
+        <p class="font-bold text-white">Demokrasi di Era Keterbukaan Informasi</p>
+        <p>Kelompok: Ahmad Romadon (1) · Eka Novianti (12) · Fatimah Zahra Riyanti (13) · Katarina Flizca Christyo Utami (17) · Safa Putri Pratiwi (30) · Satria Dani Kristyanto (32)</p>
+      </div>
+    </footer>
+
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      lucide.createIcons();
+      
+      const views = [...document.querySelectorAll('.view')];
+      const routeNames = {
+        home: 'Home', 
+        perilaku: 'Perilaku Demokratis', 
+        kasus: 'Studi Kasus Privasi Data', 
+        solusi: 'Solusi untuk SMKN 7', 
+        kampanye: 'Kampanye',
+        penilaian: 'Penilaian & Masukan'
+      };
+      const progress = {
+        home: '01 / 06', 
+        perilaku: '02 / 06', 
+        kasus: '03 / 06', 
+        solusi: '04 / 06', 
+        kampanye: '05 / 06',
+        penilaian: '06 / 06'
+      };
+
+      function navigate(route) {
+        views.forEach(v => v.classList.toggle('active', v.id === route));
+        document.querySelectorAll('[data-route]').forEach(btn => btn.classList.toggle('active', btn.dataset.route === route));
+        document.getElementById('breadcrumb').textContent = routeNames[route] || 'Home';
+        document.getElementById('progress-label').textContent = progress[route] || '01 / 06';
+        
+        const mobile = document.getElementById('mobile-nav');
+        mobile.classList.remove('open'); 
+        mobile.classList.add('hidden');
+        document.getElementById('menu-toggle').setAttribute('aria-expanded','false');
+        
+        setTimeout(() => document.querySelector('#' + route + ' h1')?.focus({preventScroll: true}), 30);
+        window.scrollTo({top: 0, behavior: 'smooth'});
+      }
+
+      document.querySelectorAll('[data-route]').forEach(btn => btn.addEventListener('click', () => navigate(btn.dataset.route)));
+      
+      document.getElementById('menu-toggle').addEventListener('click', () => {
+        const nav = document.getElementById('mobile-nav'), open = !nav.classList.contains('open');
+        nav.classList.toggle('open', open); 
+        nav.classList.toggle('hidden', !open);
+        document.getElementById('menu-toggle').setAttribute('aria-expanded', String(open));
+      });
+
+      // Comparison Sebelum / Sesudah
+      const comparison = document.getElementById('comparison'), 
+            before = document.getElementById('before-btn'), 
+            after = document.getElementById('after-btn');
+
+      function setCompare(state) {
+        comparison.className = 'comparison ' + state + ' surface rounded-[26px] p-5 sm:p-7 grid md:grid-cols-2 gap-5';
+        before.className = 'px-4 py-2 rounded-lg text-sm font-bold ' + (state === 'before' ? 'bg-yellow-300 text-[#07152d]' : 'text-slate-600');
+        after.className = 'px-4 py-2 rounded-lg text-sm font-bold ' + (state === 'after' ? 'bg-cyan-400 text-[#07152d]' : 'text-slate-600');
+      }
+
+      if (before && after) {
+        before.addEventListener('click', () => setCompare('before'));
+        after.addEventListener('click', () => setCompare('after'));
+      }
+
+      // Accordion
+      document.querySelectorAll('.accordion-trigger').forEach(btn => btn.addEventListener('click', () => {
+        const item = btn.closest('.accordion-item'), open = item.classList.toggle('open');
+        btn.setAttribute('aria-expanded', String(open));
+      }));
+
+      // Case toggle
+      document.querySelectorAll('.case-toggle').forEach(btn => btn.addEventListener('click', () => {
+        const card = btn.closest('.case-card'), open = card.classList.toggle('expanded');
+        btn.setAttribute('aria-expanded', String(open));
+        btn.firstChild.textContent = open ? 'Sembunyikan analisis ' : 'Lihat analisis ';
+        btn.classList.toggle('is-open', open);
+      }));
+
+      // Interactive Checklist
+      const checks = [...document.querySelectorAll('.check-item')];
+      checks.forEach(item => item.addEventListener('click', () => {
+        item.classList.toggle('done');
+        item.querySelector('svg')?.classList.toggle('hidden', !item.classList.contains('done'));
+        const completed = checks.filter(i => i.classList.contains('done')).length;
+        document.getElementById('check-count').textContent = completed + ' / ' + checks.length;
+        document.getElementById('check-progress').style.width = (completed / checks.length * 100) + '%';
+      }));
+
+      // --- SISTEM PENILAIAN RAHASIA KE EMAIL (faatzahra156@gmail.com) ---
+      const starBtns = document.querySelectorAll('.star-btn');
+      const starLabel = document.getElementById('star-label');
+      const selectedRatingInput = document.getElementById('selected-rating');
+      const feedbackForm = document.getElementById('feedback-form');
+      const successCard = document.getElementById('feedback-success-card');
+      const btnSubmit = document.getElementById('btn-submit-feedback');
+      const btnSubmitText = document.getElementById('btn-submit-text');
+
+      const starLabels = {
+        1: '1 / 5 (Kurang Sekali)',
+        2: '2 / 5 (Cukup)',
+        3: '3 / 5 (Baik)',
+        4: '4 / 5 (Bagus)',
+        5: '5 / 5 (Sangat Bagus!)'
+      };
+
+      function updateStarUI(rating) {
+        selectedRatingInput.value = `${rating} / 5 Bintang (${starLabels[rating]})`;
+        starLabel.textContent = starLabels[rating] || (rating + ' / 5');
+        starBtns.forEach(btn => {
+          const btnRating = parseInt(btn.dataset.rating, 10);
+          if (btnRating <= rating) {
+            btn.classList.add('text-yellow-400');
+            btn.classList.remove('text-slate-300');
+          } else {
+            btn.classList.remove('text-yellow-400');
+            btn.classList.add('text-slate-300');
+          }
+        });
+      }
+
+      // Initial rating 5
+      updateStarUI(5);
+
+      starBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          const r = parseInt(btn.dataset.rating, 10);
+          updateStarUI(r);
+        });
+      });
+
+      // Submit Form secara AJAX tanpa reload halaman
+      feedbackForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        const name = document.getElementById('feedback-name').value.trim();
+        const rating = selectedRatingInput.value;
+        const category = document.getElementById('feedback-category').value;
+        const message = document.getElementById('feedback-message').value.trim();
+
+        if (!name || !message) return;
+
+        btnSubmit.disabled = true;
+        btnSubmitText.textContent = 'Mengirim Penilaian...';
+        btnSubmit.classList.add('opacity-75', 'cursor-not-allowed');
+
+        try {
+          const response = await fetch('https://formsubmit.co/ajax/faatzahra156@gmail.com', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'Accept': 'application/json'
+            },
+            body: JSON.stringify({
+              _subject: `⭐ Penilaian Baru Proyek PKn SMKN 7 dari ${name}`,
+              _template: 'table',
+              _captcha: 'false',
+              'Nama Penilai / Kelompok': name,
+              'Rating Bintang': rating,
+              'Kategori Masukan': category,
+              'Isi Catatan & Evaluasi': message,
+              'Waktu Pengiriman': new Date().toLocaleString('id-ID')
+            })
+          });
+
+          // Tampilkan pesan sukses langsung di layar tanpa pindah halaman
+          feedbackForm.classList.add('hidden');
+          successCard.classList.remove('hidden');
+          lucide.createIcons();
+        } catch (error) {
+          console.error(error);
+          feedbackForm.classList.add('hidden');
+          successCard.classList.remove('hidden');
+          lucide.createIcons();
+        } finally {
+          btnSubmit.disabled = false;
+          btnSubmitText.textContent = 'Kirim Penilaian Rahasia ke Email';
+          btnSubmit.classList.remove('opacity-75', 'cursor-not-allowed');
+        }
+      });
+
+      // Deteksi jika reload dari redirect URL
+      const urlParams = new URLSearchParams(window.location.search);
+      if (urlParams.get('status') === 'sukses' || window.location.hash === '#penilaian') {
+        navigate('penilaian');
+        feedbackForm.classList.add('hidden');
+        successCard.classList.remove('hidden');
+        lucide.createIcons();
+      }
+
+      // Reset Form untuk kirim lagi
+      window.resetFeedbackForm = function() {
+        feedbackForm.reset();
+        updateStarUI(5);
+        successCard.classList.add('hidden');
+        feedbackForm.classList.remove('hidden');
+      };
+    });
+  </script>
+</body>
+</html>

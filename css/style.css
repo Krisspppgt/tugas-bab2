@@ -1,0 +1,41 @@
+/* Custom styling & animations for Edukasi Privasi Data */
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: #07152d;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #1e3a8a;
+    border-radius: 5px;
+    border: 2px solid #07152d;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #34d9eb;
+}
+
+/* Glassmorphism utility */
+.glass-card {
+    background: rgba(10, 34, 69, 0.65);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(52, 217, 235, 0.2);
+}
+
+/* Subtle glow effect */
+.glow-cyan {
+    box-shadow: 0 0 25px rgba(52, 217, 235, 0.25);
+}
+
+/* Active tab style */
+.case-tab-btn.active {
+    background-color: #34d9eb !important;
+    color: #07152d !important;
+    border-color: #34d9eb !important;
+    box-shadow: 0 10px 15px -3px rgba(52, 217, 235, 0.3);
+}
